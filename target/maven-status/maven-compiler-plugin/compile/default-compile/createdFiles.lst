@@ -1,0 +1,5 @@
+com\example\workflow\mvc\repository\UserRepository.class
+com\example\workflow\mvc\controllers\UserController.class
+com\example\workflow\Application.class
+com\example\workflow\mvc\service\UserService.class
+com\example\workflow\mvc\entity\User.class
