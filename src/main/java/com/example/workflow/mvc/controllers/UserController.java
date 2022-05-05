@@ -1,7 +1,9 @@
 package com.example.workflow.mvc.controllers;
 
+import com.example.workflow.mvc.entity.Client;
 import com.example.workflow.mvc.entity.User;
 import com.example.workflow.mvc.repository.UserRepository;
+import com.example.workflow.mvc.service.ClientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,11 +23,20 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private ClientService clientService;
+
     // get all employees
     @GetMapping("/user")
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
+
+    @GetMapping("/client")
+    public List<Client> getAllClients() {
+        return clientService.getClients();
+    }
+
 
     @PostMapping("/login")
     public User login(@RequestBody User user) {

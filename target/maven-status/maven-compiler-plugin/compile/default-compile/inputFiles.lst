@@ -1,5 +1,11 @@
 C:\Users\Tomek\Desktop\teach_stuff\teach_stuff\ca_may\ca_training_done-main\ca_training_done-main\backend\src\main\java\com\example\workflow\mvc\controllers\UserController.java
+C:\Users\Tomek\Desktop\teach_stuff\teach_stuff\ca_may\ca_training_done-main\ca_training_done-main\backend\src\main\java\com\example\workflow\mvc\repository\LoanRepository.java
 C:\Users\Tomek\Desktop\teach_stuff\teach_stuff\ca_may\ca_training_done-main\ca_training_done-main\backend\src\main\java\com\example\workflow\mvc\service\UserService.java
+C:\Users\Tomek\Desktop\teach_stuff\teach_stuff\ca_may\ca_training_done-main\ca_training_done-main\backend\src\main\java\com\example\workflow\mvc\entity\Loan.java
 C:\Users\Tomek\Desktop\teach_stuff\teach_stuff\ca_may\ca_training_done-main\ca_training_done-main\backend\src\main\java\com\example\workflow\mvc\entity\User.java
+C:\Users\Tomek\Desktop\teach_stuff\teach_stuff\ca_may\ca_training_done-main\ca_training_done-main\backend\src\main\java\com\example\workflow\mvc\repository\ClientRepository.java
 C:\Users\Tomek\Desktop\teach_stuff\teach_stuff\ca_may\ca_training_done-main\ca_training_done-main\backend\src\main\java\com\example\workflow\Application.java
+C:\Users\Tomek\Desktop\teach_stuff\teach_stuff\ca_may\ca_training_done-main\ca_training_done-main\backend\src\main\java\com\example\workflow\mvc\repository\DebtRepository.java
+C:\Users\Tomek\Desktop\teach_stuff\teach_stuff\ca_may\ca_training_done-main\ca_training_done-main\backend\src\main\java\com\example\workflow\mvc\entity\Debt.java
+C:\Users\Tomek\Desktop\teach_stuff\teach_stuff\ca_may\ca_training_done-main\ca_training_done-main\backend\src\main\java\com\example\workflow\mvc\entity\Client.java
 C:\Users\Tomek\Desktop\teach_stuff\teach_stuff\ca_may\ca_training_done-main\ca_training_done-main\backend\src\main\java\com\example\workflow\mvc\repository\UserRepository.java
