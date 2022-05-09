@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ShowDelegate implements JavaDelegate {
+public class CorellateMessage implements JavaDelegate {
 
     @Autowired
     RuntimeService runtimeService;
@@ -20,15 +20,6 @@ public class ShowDelegate implements JavaDelegate {
     @Override
     public void execute(DelegateExecution delegateExecution) throws Exception {
 
-        // System.out.println(delegateExecution.getVariable("pizza"));
-        // delegateExecution.getSuperExecution().getVariable("pizza");
-        // delegateExecution.getVariableLocal("pizza");
-
-        System.out.println(delegateExecution.getVariable("client"));
-        
-
-        //System.out.println(runtimeService.getVariable(delegateExecution.getProcessInstanceId(), "pizza"));
-
-
+        runtimeService.correlateMessage("MSG_START_PR02");
     }
 }
