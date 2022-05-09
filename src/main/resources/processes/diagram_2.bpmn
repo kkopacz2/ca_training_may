@@ -14,8 +14,10 @@
         <bpmn:flowNodeRef>dsadsa</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_0t1pn86</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_0hd2kt6</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_141fs9h</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_1mzqj3q</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_141fs9h</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_1jlggql</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_1veunot</bpmn:flowNodeRef>
         <bpmn:childLaneSet id="LaneSet_007tiuq">
           <bpmn:lane id="Lane_05v0ff4">
             <bpmn:flowNodeRef>Activity_1r3hczn</bpmn:flowNodeRef>
@@ -26,8 +28,10 @@
             <bpmn:flowNodeRef>dsadsa</bpmn:flowNodeRef>
             <bpmn:flowNodeRef>Activity_0t1pn86</bpmn:flowNodeRef>
             <bpmn:flowNodeRef>Event_0hd2kt6</bpmn:flowNodeRef>
-            <bpmn:flowNodeRef>Activity_141fs9h</bpmn:flowNodeRef>
             <bpmn:flowNodeRef>Activity_1mzqj3q</bpmn:flowNodeRef>
+            <bpmn:flowNodeRef>Activity_141fs9h</bpmn:flowNodeRef>
+            <bpmn:flowNodeRef>Activity_1jlggql</bpmn:flowNodeRef>
+            <bpmn:flowNodeRef>Activity_1veunot</bpmn:flowNodeRef>
           </bpmn:lane>
         </bpmn:childLaneSet>
       </bpmn:lane>
@@ -74,15 +78,15 @@
       <bpmn:incoming>Flow_1hdwdju</bpmn:incoming>
       <bpmn:outgoing>Flow_00ol04o</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:serviceTask id="Activity_0jkr5jz" name="Show user choice" camunda:delegateExpression="${mockDelegate}">
+    <bpmn:serviceTask id="Activity_0jkr5jz" name="Show user choice" camunda:delegateExpression="${showDelegate}">
       <bpmn:extensionElements>
         <camunda:inputOutput>
           <camunda:inputParameter name="pizza">${execution.getVariable("pizza")}</camunda:inputParameter>
         </camunda:inputOutput>
       </bpmn:extensionElements>
-      <bpmn:incoming>Flow_1xysl7e</bpmn:incoming>
+      <bpmn:incoming>Flow_15cgsh4</bpmn:incoming>
       <bpmn:outgoing>Flow_0vrt3sp</bpmn:outgoing>
-      <bpmn:multiInstanceLoopCharacteristics isSequential="true" />
+      <bpmn:multiInstanceLoopCharacteristics isSequential="true" camunda:collection="clientList" camunda:elementVariable="client" />
     </bpmn:serviceTask>
     <bpmn:exclusiveGateway id="Gateway_1kmnkzu" name="Is Margaritha?" default="Flow_1vs7gpk">
       <bpmn:incoming>Flow_0vrt3sp</bpmn:incoming>
@@ -107,14 +111,14 @@
     <bpmn:sequenceFlow id="Flow_1hdwdju" sourceRef="Gateway_005mafq" targetRef="Activity_0tbn9j3" />
     <bpmn:sequenceFlow id="Flow_0kiclle" sourceRef="Activity_146h60o" targetRef="Gateway_180yon1" />
     <bpmn:sequenceFlow id="Flow_00ol04o" sourceRef="Activity_0tbn9j3" targetRef="Gateway_180yon1" />
-    <bpmn:sequenceFlow id="Flow_1xysl7e" sourceRef="Gateway_180yon1" targetRef="Activity_0jkr5jz" />
+    <bpmn:sequenceFlow id="Flow_1xysl7e" sourceRef="Gateway_180yon1" targetRef="Activity_1jlggql" />
     <bpmn:sequenceFlow id="Flow_0vrt3sp" sourceRef="Activity_0jkr5jz" targetRef="Gateway_1kmnkzu" />
     <bpmn:sequenceFlow id="Flow_1cwd0ja" sourceRef="Gateway_1kmnkzu" targetRef="Activity_1mzqj3q">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${pizza=='MARGARITHA'}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_1vs7gpk" sourceRef="Gateway_1kmnkzu" targetRef="Activity_1r3hczn" />
     <bpmn:sequenceFlow id="Flow_0hy1adr" sourceRef="Activity_1r3hczn" targetRef="Event_0ga6b6s" />
-    <bpmn:sequenceFlow id="Flow_1gemmd9" sourceRef="dsadsa" targetRef="Activity_141fs9h" />
+    <bpmn:sequenceFlow id="Flow_1gemmd9" sourceRef="dsadsa" targetRef="Activity_1veunot" />
     <bpmn:sequenceFlow id="Flow_1jrkbyn" sourceRef="Event_1r1mz6v" targetRef="Activity_0t1pn86" />
     <bpmn:sequenceFlow id="Flow_11knq92" sourceRef="Activity_0t1pn86" targetRef="Event_0eir3n8" />
     <bpmn:userTask id="Activity_0t1pn86" name="Check data, validation failed">
@@ -126,6 +130,12 @@
       <bpmn:messageEventDefinition id="MessageEventDefinition_0gldztk" messageRef="Message_14694eq" />
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="Flow_1lad893" sourceRef="Activity_141fs9h" targetRef="Gateway_005mafq" />
+    <bpmn:sequenceFlow id="Flow_04ctxio" sourceRef="Activity_1mzqj3q" targetRef="Event_0hd2kt6" />
+    <bpmn:businessRuleTask id="Activity_1mzqj3q" name="Decision" camunda:resultVariable="output" camunda:decisionRef="Decision_0fjsi5x" camunda:mapDecisionResult="singleEntry">
+      <bpmn:incoming>Flow_1cwd0ja</bpmn:incoming>
+      <bpmn:outgoing>Flow_04ctxio</bpmn:outgoing>
+    </bpmn:businessRuleTask>
+    <bpmn:sequenceFlow id="Flow_0lappvy" sourceRef="Activity_1veunot" targetRef="Activity_141fs9h" />
     <bpmn:callActivity id="Activity_141fs9h" name="Start ticket process" calledElement="Process_0wvc3yr">
       <bpmn:extensionElements>
         <camunda:in businessKey="#{execution.processBusinessKey}" />
@@ -133,13 +143,17 @@
           <camunda:inputParameter name="crustChoice">${crustChoice}</camunda:inputParameter>
         </camunda:inputOutput>
       </bpmn:extensionElements>
-      <bpmn:incoming>Flow_1gemmd9</bpmn:incoming>
+      <bpmn:incoming>Flow_0lappvy</bpmn:incoming>
       <bpmn:outgoing>Flow_1lad893</bpmn:outgoing>
     </bpmn:callActivity>
-    <bpmn:sequenceFlow id="Flow_04ctxio" sourceRef="Activity_1mzqj3q" targetRef="Event_0hd2kt6" />
-    <bpmn:businessRuleTask id="Activity_1mzqj3q" name="Decision" camunda:resultVariable="output" camunda:decisionRef="Decision_0fjsi5x" camunda:mapDecisionResult="singleEntry">
-      <bpmn:incoming>Flow_1cwd0ja</bpmn:incoming>
-      <bpmn:outgoing>Flow_04ctxio</bpmn:outgoing>
+    <bpmn:serviceTask id="Activity_1jlggql" name="ClientListPrepareTask" camunda:delegateExpression="${mockDelegate}">
+      <bpmn:incoming>Flow_1xysl7e</bpmn:incoming>
+      <bpmn:outgoing>Flow_15cgsh4</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_15cgsh4" sourceRef="Activity_1jlggql" targetRef="Activity_0jkr5jz" />
+    <bpmn:businessRuleTask id="Activity_1veunot" name="Decision" camunda:resultVariable="output" camunda:decisionRef="Decision_0fjsi5x" camunda:mapDecisionResult="singleEntry">
+      <bpmn:incoming>Flow_1gemmd9</bpmn:incoming>
+      <bpmn:outgoing>Flow_0lappvy</bpmn:outgoing>
     </bpmn:businessRuleTask>
   </bpmn:process>
   <bpmn:message id="Message_14694eq" name="Message_2c98b28" />
@@ -182,7 +196,7 @@
       <bpmndi:BPMNEdge id="Flow_1xysl7e_di" bpmnElement="Flow_1xysl7e">
         <di:waypoint x="1140" y="515" />
         <di:waypoint x="1140" y="300" />
-        <di:waypoint x="1330" y="300" />
+        <di:waypoint x="1160" y="300" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0vrt3sp_di" bpmnElement="Flow_0vrt3sp">
         <di:waypoint x="1430" y="300" />
@@ -204,7 +218,7 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1gemmd9_di" bpmnElement="Flow_1gemmd9">
         <di:waypoint x="348" y="300" />
-        <di:waypoint x="460" y="300" />
+        <di:waypoint x="470" y="300" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1jrkbyn_di" bpmnElement="Flow_1jrkbyn">
         <di:waypoint x="1000" y="482" />
@@ -216,13 +230,20 @@
         <di:waypoint x="1332" y="190" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1lad893_di" bpmnElement="Flow_1lad893">
-        <di:waypoint x="560" y="300" />
-        <di:waypoint x="770" y="300" />
+        <di:waypoint x="770" y="340" />
         <di:waypoint x="770" y="515" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_04ctxio_di" bpmnElement="Flow_04ctxio">
         <di:waypoint x="1780" y="387" />
         <di:waypoint x="1892" y="387" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0lappvy_di" bpmnElement="Flow_0lappvy">
+        <di:waypoint x="570" y="300" />
+        <di:waypoint x="720" y="300" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_15cgsh4_di" bpmnElement="Flow_15cgsh4">
+        <di:waypoint x="1260" y="300" />
+        <di:waypoint x="1330" y="300" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Activity_0za5qqp_di" bpmnElement="Activity_1r3hczn">
         <dc:Bounds x="1710" y="120" width="100" height="80" />
@@ -269,11 +290,17 @@
       <bpmndi:BPMNShape id="Event_1fjbfbg_di" bpmnElement="Event_0hd2kt6">
         <dc:Bounds x="1892" y="369" width="36" height="36" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1qbqm2s_di" bpmnElement="Activity_141fs9h">
-        <dc:Bounds x="460" y="260" width="100" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1o0eedt_di" bpmnElement="Activity_1mzqj3q">
         <dc:Bounds x="1680" y="347" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1qbqm2s_di" bpmnElement="Activity_141fs9h">
+        <dc:Bounds x="720" y="260" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1jlggql_di" bpmnElement="Activity_1jlggql">
+        <dc:Bounds x="1160" y="260" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1veunot_di" bpmnElement="Activity_1veunot">
+        <dc:Bounds x="470" y="260" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_119cxa1_di" bpmnElement="Event_1r1mz6v">
         <dc:Bounds x="982" y="482" width="36" height="36" />

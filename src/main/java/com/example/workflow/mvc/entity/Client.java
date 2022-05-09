@@ -3,10 +3,11 @@ package com.example.workflow.mvc.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Data
-public class Client {
+public class Client implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,6 +23,6 @@ public class Client {
 
     @OneToOne
     private Debt debt;
-    
+
 
 }
