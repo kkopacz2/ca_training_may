@@ -15,5 +15,13 @@ public class MockDelegate implements JavaDelegate {
 
     @Override
     public void execute(DelegateExecution delegateExecution) throws Exception {
+
+        // System.out.println(delegateExecution.getVariable("pizza"));
+        // delegateExecution.getSuperExecution().getVariable("pizza");
+        // delegateExecution.getVariableLocal("pizza");
+
+        System.out.println(runtimeService.getVariable(delegateExecution.getProcessInstanceId(), "pizza"));
+
+
     }
 }

@@ -26,3 +26,4 @@ public class MockExternalTask implements ExternalTaskHandler {
         externalTaskService.complete(externalTask);
 
     }
+}

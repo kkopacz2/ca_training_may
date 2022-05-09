@@ -1,11 +1,15 @@
+com\example\workflow\mvc\service\ClientService.class
+com\example\workflow\mvc\delegates\MockExternalTask.class
 com\example\workflow\mvc\repository\LoanRepository.class
 com\example\workflow\mvc\entity\Client.class
 com\example\workflow\mvc\entity\Loan.class
 com\example\workflow\mvc\entity\User.class
 com\example\workflow\mvc\repository\UserRepository.class
+com\example\workflow\mvc\service\LoanService.class
 com\example\workflow\mvc\entity\Debt.class
 com\example\workflow\mvc\repository\ClientRepository.class
 com\example\workflow\mvc\controllers\UserController.class
 com\example\workflow\Application.class
 com\example\workflow\mvc\service\UserService.class
 com\example\workflow\mvc\repository\DebtRepository.class
+com\example\workflow\mvc\delegates\MockDelegate.class
