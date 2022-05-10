@@ -9,7 +9,6 @@
         <outputRelativeToContentRoot value="true" />
         <module name="backend" />
         <module name="my-project" />
-        <module name="ca_training_may-day2" />
       </profile>
     </annotationProcessing>
   </component>
