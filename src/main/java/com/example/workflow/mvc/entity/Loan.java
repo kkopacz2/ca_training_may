@@ -2,14 +2,12 @@ package com.example.workflow.mvc.entity;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Data
-public class Loan {
+public class Loan implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,6 +16,7 @@ public class Loan {
     private String amount;
     private String currency;
     private String amountOfInstallament;
-    private int client_id;
+    @Column(name = "client_id")
+    private int clientId;
 
 }

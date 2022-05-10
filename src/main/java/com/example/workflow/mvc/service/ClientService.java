@@ -25,6 +25,10 @@ public class ClientService {
         return clientRepository.findAll();
     }
 
+    public Client getClientById(Long id) {
+        return clientRepository.getById(id);
+    }
+
     public void correlateMessage(String messageId) {
         runtimeService.correlateMessage(messageId);
     }
