@@ -17,19 +17,21 @@
         <bpmn:flowNodeRef>Gateway_0n7vrtj</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_1eu8uuc</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_0icgded</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_0iw96y3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>getDebtData</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_1imhcsu</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_020lzu7</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ExternalDebtId</bpmn:flowNodeRef>
         <bpmn:childLaneSet id="LaneSet_1kojz4x">
           <bpmn:lane id="Lane_1g3hmrp">
             <bpmn:flowNodeRef>Gateway_0n7vrtj</bpmn:flowNodeRef>
             <bpmn:flowNodeRef>Gateway_1eu8uuc</bpmn:flowNodeRef>
             <bpmn:flowNodeRef>Event_0icgded</bpmn:flowNodeRef>
-            <bpmn:flowNodeRef>Activity_0iw96y3</bpmn:flowNodeRef>
+            <bpmn:flowNodeRef>getDebtData</bpmn:flowNodeRef>
             <bpmn:flowNodeRef>Activity_1imhcsu</bpmn:flowNodeRef>
             <bpmn:flowNodeRef>Activity_020lzu7</bpmn:flowNodeRef>
             <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
+            <bpmn:flowNodeRef>ExternalDebtId</bpmn:flowNodeRef>
           </bpmn:lane>
         </bpmn:childLaneSet>
       </bpmn:lane>
@@ -47,9 +49,10 @@
     <bpmn:endEvent id="Event_0icgded" name="Stop process">
       <bpmn:incoming>Flow_0sfp6rk</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:serviceTask id="Activity_0iw96y3" name="Get debt data" camunda:delegateExpression="${debtDataDelegate}">
+    <bpmn:serviceTask id="getDebtData" name="Get debt data" camunda:delegateExpression="${debtDataDelegate}">
       <bpmn:incoming>Flow_0blssr7</bpmn:incoming>
       <bpmn:outgoing>Flow_04gai46</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1opk55c</bpmn:outgoing>
     </bpmn:serviceTask>
     <bpmn:userTask id="Activity_0da1a26" name="Confirm">
       <bpmn:incoming>Flow_0sgduw8</bpmn:incoming>
@@ -67,8 +70,8 @@
     <bpmn:startEvent id="StartEvent_1" name="Start process">
       <bpmn:outgoing>Flow_0blssr7</bpmn:outgoing>
     </bpmn:startEvent>
-    <bpmn:sequenceFlow id="Flow_0blssr7" sourceRef="StartEvent_1" targetRef="Activity_0iw96y3" />
-    <bpmn:sequenceFlow id="Flow_04gai46" sourceRef="Activity_0iw96y3" targetRef="Activity_020lzu7" />
+    <bpmn:sequenceFlow id="Flow_0blssr7" sourceRef="StartEvent_1" targetRef="getDebtData" />
+    <bpmn:sequenceFlow id="Flow_04gai46" sourceRef="getDebtData" targetRef="Activity_020lzu7" />
     <bpmn:sequenceFlow id="Flow_17mgwfo" sourceRef="Activity_020lzu7" targetRef="Gateway_0n7vrtj" />
     <bpmn:sequenceFlow id="Flow_1cdup3l" name="No" sourceRef="Gateway_0n7vrtj" targetRef="Activity_1imhcsu" />
     <bpmn:sequenceFlow id="Flow_0sgduw8" name="Yes" sourceRef="Gateway_0n7vrtj" targetRef="Activity_0da1a26">
@@ -77,98 +80,109 @@
     <bpmn:sequenceFlow id="Flow_12lvgux" sourceRef="Activity_0da1a26" targetRef="Gateway_1eu8uuc" />
     <bpmn:sequenceFlow id="Flow_01hv8h3" sourceRef="Activity_1imhcsu" targetRef="Gateway_1eu8uuc" />
     <bpmn:sequenceFlow id="Flow_0sfp6rk" sourceRef="Gateway_1eu8uuc" targetRef="Event_0icgded" />
+    <bpmn:serviceTask id="ExternalDebtId" name="ExternalDebtData" camunda:type="external" camunda:topic="externalDebtData">
+      <bpmn:incoming>Flow_1opk55c</bpmn:incoming>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_1opk55c" sourceRef="getDebtData" targetRef="ExternalDebtId" />
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_02rtkwk">
       <bpmndi:BPMNShape id="Participant_0svpu2z_di" bpmnElement="Participant_0svpu2z" isHorizontal="true">
-        <dc:Bounds x="140" y="80" width="1250" height="390" />
+        <dc:Bounds x="140" y="80" width="1250" height="490" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_1b08bek_di" bpmnElement="Lane_1b08bek" isHorizontal="true">
-        <dc:Bounds x="170" y="80" width="1220" height="140" />
+        <dc:Bounds x="170" y="80" width="1220" height="240" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_0axidsh_di" bpmnElement="Lane_0axidsh" isHorizontal="true">
-        <dc:Bounds x="200" y="80" width="1190" height="140" />
+        <dc:Bounds x="200" y="80" width="1190" height="240" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_0yhvwmr_di" bpmnElement="Lane_0yhvwmr" isHorizontal="true">
-        <dc:Bounds x="170" y="220" width="1220" height="250" />
+        <dc:Bounds x="170" y="320" width="1220" height="250" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_1g3hmrp_di" bpmnElement="Lane_1g3hmrp" isHorizontal="true">
-        <dc:Bounds x="200" y="220" width="1190" height="250" />
+        <dc:Bounds x="200" y="320" width="1190" height="250" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_0blssr7_di" bpmnElement="Flow_0blssr7">
-        <di:waypoint x="258" y="270" />
-        <di:waypoint x="290" y="270" />
+        <di:waypoint x="258" y="370" />
+        <di:waypoint x="290" y="370" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_04gai46_di" bpmnElement="Flow_04gai46">
-        <di:waypoint x="390" y="270" />
-        <di:waypoint x="460" y="270" />
+        <di:waypoint x="390" y="370" />
+        <di:waypoint x="460" y="370" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_17mgwfo_di" bpmnElement="Flow_17mgwfo">
-        <di:waypoint x="560" y="270" />
-        <di:waypoint x="595" y="270" />
+        <di:waypoint x="560" y="370" />
+        <di:waypoint x="595" y="370" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1cdup3l_di" bpmnElement="Flow_1cdup3l">
-        <di:waypoint x="620" y="295" />
-        <di:waypoint x="620" y="380" />
-        <di:waypoint x="680" y="380" />
+        <di:waypoint x="620" y="395" />
+        <di:waypoint x="620" y="480" />
+        <di:waypoint x="680" y="480" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="628" y="336" width="15" height="14" />
+          <dc:Bounds x="628" y="436" width="15" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0sgduw8_di" bpmnElement="Flow_0sgduw8">
-        <di:waypoint x="620" y="245" />
-        <di:waypoint x="620" y="140" />
-        <di:waypoint x="680" y="140" />
+        <di:waypoint x="620" y="345" />
+        <di:waypoint x="620" y="240" />
+        <di:waypoint x="680" y="240" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="626" y="190" width="18" height="14" />
+          <dc:Bounds x="626" y="290" width="18" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_12lvgux_di" bpmnElement="Flow_12lvgux">
-        <di:waypoint x="780" y="140" />
-        <di:waypoint x="860" y="140" />
-        <di:waypoint x="860" y="245" />
+        <di:waypoint x="780" y="240" />
+        <di:waypoint x="860" y="240" />
+        <di:waypoint x="860" y="345" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_01hv8h3_di" bpmnElement="Flow_01hv8h3">
-        <di:waypoint x="780" y="380" />
-        <di:waypoint x="860" y="380" />
-        <di:waypoint x="860" y="295" />
+        <di:waypoint x="780" y="480" />
+        <di:waypoint x="860" y="480" />
+        <di:waypoint x="860" y="395" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0sfp6rk_di" bpmnElement="Flow_0sfp6rk">
-        <di:waypoint x="885" y="270" />
-        <di:waypoint x="982" y="270" />
+        <di:waypoint x="885" y="370" />
+        <di:waypoint x="982" y="370" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1opk55c_di" bpmnElement="Flow_1opk55c">
+        <di:waypoint x="340" y="410" />
+        <di:waypoint x="340" y="450" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Gateway_0n7vrtj_di" bpmnElement="Gateway_0n7vrtj" isMarkerVisible="true">
-        <dc:Bounds x="595" y="245" width="50" height="50" />
+        <dc:Bounds x="595" y="345" width="50" height="50" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="663" y="260" width="74" height="27" />
+          <dc:Bounds x="663" y="360" width="74" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Gateway_1eu8uuc_di" bpmnElement="Gateway_1eu8uuc" isMarkerVisible="true">
-        <dc:Bounds x="835" y="245" width="50" height="50" />
+        <dc:Bounds x="835" y="345" width="50" height="50" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_0icgded_di" bpmnElement="Event_0icgded">
-        <dc:Bounds x="982" y="252" width="36" height="36" />
+        <dc:Bounds x="982" y="352" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="968" y="295" width="65" height="14" />
+          <dc:Bounds x="968" y="395" width="65" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1sl9gw4_di" bpmnElement="Activity_0iw96y3">
-        <dc:Bounds x="290" y="230" width="100" height="80" />
+      <bpmndi:BPMNShape id="Activity_1sl9gw4_di" bpmnElement="getDebtData">
+        <dc:Bounds x="290" y="330" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_15g7mi7_di" bpmnElement="Activity_0da1a26">
-        <dc:Bounds x="680" y="100" width="100" height="80" />
+        <dc:Bounds x="680" y="200" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0w6yex2_di" bpmnElement="Activity_1imhcsu">
-        <dc:Bounds x="680" y="340" width="100" height="80" />
+        <dc:Bounds x="680" y="440" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0rb4kv2_di" bpmnElement="Activity_020lzu7">
-        <dc:Bounds x="460" y="230" width="100" height="80" />
+        <dc:Bounds x="460" y="330" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
-        <dc:Bounds x="222" y="252" width="36" height="36" />
+        <dc:Bounds x="222" y="352" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="207" y="295" width="66" height="14" />
+          <dc:Bounds x="207" y="395" width="66" height="14" />
         </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0dz4dsk_di" bpmnElement="ExternalDebtId">
+        <dc:Bounds x="290" y="450" width="100" height="80" />
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
