@@ -20,7 +20,7 @@ public class DebtDataDelegate implements JavaDelegate {
     @Override
     public void execute(DelegateExecution delegateExecution) throws Exception {
 
-        String debtData = "false";
+        String debtData = "500000000";
 
         delegateExecution.setVariable("debtData", debtData);
 
