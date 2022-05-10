@@ -23,5 +23,8 @@ public class MockDelegate implements JavaDelegate {
         String previousLoanData = "false";
         delegateExecution.setVariable("previousLoanData", previousLoanData);
 
+        //causing incident
+        //delegateExecution.getVariable("someNonExistingVariable");
+
     }
 }
