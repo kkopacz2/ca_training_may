@@ -93,5 +93,9 @@ public class UserController {
         return ResponseEntity.ok(response);
     }
 
+    @PostMapping("/correlate-message")
+    public void correlateMessage(@RequestBody String messageId) {
+        clientService.correlateMessage(messageId);
+    }
 
 }

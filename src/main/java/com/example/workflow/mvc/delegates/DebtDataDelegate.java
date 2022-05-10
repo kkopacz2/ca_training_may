@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class MockDelegate implements JavaDelegate {
+public class DebtDataDelegate implements JavaDelegate {
 
     @Autowired
     RuntimeService runtimeService;
@@ -20,8 +20,9 @@ public class MockDelegate implements JavaDelegate {
     @Override
     public void execute(DelegateExecution delegateExecution) throws Exception {
 
-        String previousLoanData = "false";
-        delegateExecution.setVariable("previousLoanData", previousLoanData);
+        String debtData = "false";
+
+        delegateExecution.setVariable("debtData", debtData);
 
     }
 }
