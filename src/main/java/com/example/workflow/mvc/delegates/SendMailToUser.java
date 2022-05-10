@@ -1,6 +1,5 @@
 package com.example.workflow.mvc.delegates;
 
-
 import com.example.workflow.mvc.service.ClientService;
 import org.camunda.bpm.engine.RuntimeService;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
@@ -9,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class MockDelegate implements JavaDelegate {
+public class SendMailToUser implements JavaDelegate {
 
     @Autowired
     RuntimeService runtimeService;
@@ -19,9 +18,6 @@ public class MockDelegate implements JavaDelegate {
 
     @Override
     public void execute(DelegateExecution delegateExecution) throws Exception {
-
-        String previousLoanData = "false";
-        delegateExecution.setVariable("previousLoanData", previousLoanData);
-
+        System.out.println("delegate: SendMailToUser");
     }
 }
