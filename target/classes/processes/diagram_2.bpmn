@@ -15,7 +15,7 @@
         <bpmn:flowNodeRef>PR_01_START_EVENT</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_16nx3da</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_141fs9h</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_0s7uzao</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>PR_01_ST_001_CORRELLATE</bpmn:flowNodeRef>
         <bpmn:childLaneSet id="LaneSet_007tiuq">
           <bpmn:lane id="Lane_05v0ff4">
             <bpmn:flowNodeRef>Activity_0jkr5jz</bpmn:flowNodeRef>
@@ -27,7 +27,7 @@
             <bpmn:flowNodeRef>PR_01_START_EVENT</bpmn:flowNodeRef>
             <bpmn:flowNodeRef>Event_16nx3da</bpmn:flowNodeRef>
             <bpmn:flowNodeRef>Activity_141fs9h</bpmn:flowNodeRef>
-            <bpmn:flowNodeRef>Activity_0s7uzao</bpmn:flowNodeRef>
+            <bpmn:flowNodeRef>PR_01_ST_001_CORRELLATE</bpmn:flowNodeRef>
           </bpmn:lane>
         </bpmn:childLaneSet>
       </bpmn:lane>
@@ -111,7 +111,7 @@
       </bpmn:dataOutputAssociation>
     </bpmn:businessRuleTask>
     <bpmn:sequenceFlow id="Flow_1gemmd9" sourceRef="PR_01_START_EVENT" targetRef="Event_16nx3da" />
-    <bpmn:sequenceFlow id="Flow_0lappvy" sourceRef="PR_01_DMN_001_DECISION" targetRef="Activity_0s7uzao" />
+    <bpmn:sequenceFlow id="Flow_0lappvy" sourceRef="PR_01_DMN_001_DECISION" targetRef="PR_01_ST_001_CORRELLATE" />
     <bpmn:dataObjectReference id="DataObjectReference_1l6wwvj" name="Some comment" dataObjectRef="DataObject_0x843mu" />
     <bpmn:dataObject id="DataObject_0x843mu" />
     <bpmn:dataStoreReference id="DataStoreReference_17y3k8f" name="local db" />
@@ -142,8 +142,8 @@
       <bpmn:incoming>Flow_1q65pms</bpmn:incoming>
       <bpmn:outgoing>Flow_1lad893</bpmn:outgoing>
     </bpmn:callActivity>
-    <bpmn:sequenceFlow id="Flow_1q65pms" sourceRef="Activity_0s7uzao" targetRef="Activity_141fs9h" />
-    <bpmn:serviceTask id="Activity_0s7uzao" name="Corellate message" camunda:delegateExpression="${corellateMessage}">
+    <bpmn:sequenceFlow id="Flow_1q65pms" sourceRef="PR_01_ST_001_CORRELLATE" targetRef="Activity_141fs9h" />
+    <bpmn:serviceTask id="PR_01_ST_001_CORRELLATE" name="Corellate message" camunda:delegateExpression="${corellateMessage}">
       <bpmn:incoming>Flow_0lappvy</bpmn:incoming>
       <bpmn:outgoing>Flow_1q65pms</bpmn:outgoing>
     </bpmn:serviceTask>
@@ -290,7 +290,7 @@
       <bpmndi:BPMNShape id="Activity_1qbqm2s_di" bpmnElement="Activity_141fs9h">
         <dc:Bounds x="790" y="280" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1dbkumj_di" bpmnElement="Activity_0s7uzao">
+      <bpmndi:BPMNShape id="Activity_1dbkumj_di" bpmnElement="PR_01_ST_001_CORRELLATE">
         <dc:Bounds x="630" y="280" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="TextAnnotation_0kphamv_di" bpmnElement="TextAnnotation_0kphamv">

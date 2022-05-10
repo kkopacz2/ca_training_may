@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0t15avl" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.11.1" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.15.0">
+  <bpmn:process id="PR_002_EXTERNAL_TASK" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1" name="Start process">
+      <bpmn:outgoing>Flow_03qdrpt</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_03qdrpt" sourceRef="StartEvent_1" targetRef="Activity_13oks23" />
+    <bpmn:endEvent id="Event_1uw2mni" name="End process">
+      <bpmn:incoming>Flow_021mxpf</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_021mxpf" sourceRef="Activity_13oks23" targetRef="Event_1uw2mni" />
+    <bpmn:serviceTask id="Activity_13oks23" name="Get some data external task" camunda:type="external" camunda:topic="doSomeWork">
+      <bpmn:incoming>Flow_03qdrpt</bpmn:incoming>
+      <bpmn:outgoing>Flow_021mxpf</bpmn:outgoing>
+    </bpmn:serviceTask>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="PR_002_EXTERNAL_TASK">
+      <bpmndi:BPMNEdge id="Flow_03qdrpt_di" bpmnElement="Flow_03qdrpt">
+        <di:waypoint x="215" y="117" />
+        <di:waypoint x="350" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_021mxpf_di" bpmnElement="Flow_021mxpf">
+        <di:waypoint x="450" y="117" />
+        <di:waypoint x="542" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="99" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="164" y="142" width="66" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1uw2mni_di" bpmnElement="Event_1uw2mni">
+        <dc:Bounds x="542" y="99" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="529" y="142" width="62" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0j7o55k_di" bpmnElement="Activity_13oks23">
+        <dc:Bounds x="350" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
