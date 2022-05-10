@@ -18,7 +18,7 @@ public class MockDelegate implements JavaDelegate {
     ClientService clientService;
 
     @Override
-    public void execute(DelegateExecution delegateExecution) throws Exception {
+    public void execute(DelegateExecution delegateExecution) {
 
         String previousLoanData = "false";
         delegateExecution.setVariable("previousLoanData", previousLoanData);
