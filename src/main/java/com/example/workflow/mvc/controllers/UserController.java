@@ -98,4 +98,9 @@ public class UserController {
         clientService.correlateMessage(messageId);
     }
 
+    @PostMapping("/signal")
+    public void signal(@RequestBody String signalId) {
+        clientService.signal(signalId);
+    }
+
 }

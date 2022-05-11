@@ -33,6 +33,10 @@ public class ClientService {
         runtimeService.correlateMessage(messageId);
     }
 
+    public void signal(String signalId) {
+        runtimeService.signalEventReceived(signalId);
+    }
+
     public Optional<Client> findCientById(Long clientId) {
         return clientRepository.findById(clientId);
     }
