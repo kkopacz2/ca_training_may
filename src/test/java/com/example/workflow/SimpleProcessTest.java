@@ -36,6 +36,7 @@ public class SimpleProcessTest extends AbstractProcessEngineRuleTest {
 
         Task task = taskService().createTaskQuery().processInstanceId(processInstance.getId()).singleResult();
 
+
         BpmnAwareTests.complete(task);
         assertThat(processInstance).hasPassed("FirstTask");
         task = taskService().createTaskQuery().processInstanceId(processInstance.getId()).singleResult();

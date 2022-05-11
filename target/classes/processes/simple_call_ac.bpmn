@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1k6ngfy" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.11.1" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.15.0">
+  <bpmn:process id="PR_SMP_AC" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_1097e7z</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:callActivity id="Activity_0vqlj2i" name="Start ticket process" calledElement="Process_0wvc3yr">
+      <bpmn:extensionElements>
+        <camunda:in businessKey="#{execution.processBusinessKey}" />
+        <camunda:inputOutput>
+          <camunda:inputParameter name="crustChoice">${crustChoice}</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1097e7z</bpmn:incoming>
+      <bpmn:outgoing>Flow_1djfuvb</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:sequenceFlow id="Flow_1097e7z" sourceRef="StartEvent_1" targetRef="Activity_0vqlj2i" />
+    <bpmn:endEvent id="Event_1yogrts">
+      <bpmn:incoming>Flow_1djfuvb</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1djfuvb" sourceRef="Activity_0vqlj2i" targetRef="Event_1yogrts" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="PR_SMP_AC">
+      <bpmndi:BPMNEdge id="Flow_1097e7z_di" bpmnElement="Flow_1097e7z">
+        <di:waypoint x="215" y="107" />
+        <di:waypoint x="340" y="107" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1djfuvb_di" bpmnElement="Flow_1djfuvb">
+        <di:waypoint x="440" y="117" />
+        <di:waypoint x="510" y="117" />
+        <di:waypoint x="510" y="107" />
+        <di:waypoint x="582" y="107" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="89" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0vqlj2i_di" bpmnElement="Activity_0vqlj2i">
+        <dc:Bounds x="340" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1yogrts_di" bpmnElement="Event_1yogrts">
+        <dc:Bounds x="582" y="89" width="36" height="36" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
