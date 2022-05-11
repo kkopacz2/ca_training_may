@@ -14,8 +14,12 @@ public class PreviousLoansDelegate implements JavaDelegate {
     private static final String CLIENT_ID = "clientId";
     private static final String LOANS = "loans";
 
-    @Autowired
     LoanService loanService;
+
+    @Autowired
+    public void setLoanService(LoanService loanService) {
+        this.loanService = loanService;
+    }
 
     @Override
     public void execute(DelegateExecution delegateExecution) throws Exception {
