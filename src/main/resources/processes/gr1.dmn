@@ -4,20 +4,20 @@
     <decisionTable id="DecisionTable_00i793o" hitPolicy="FIRST" biodi:annotationsWidth="400">
       <input id="Input_1" label="client_user_income">
         <inputExpression id="InputExpression_1" typeRef="long">
-          <text></text>
+          <text>client_user_income</text>
         </inputExpression>
       </input>
       <input id="InputClause_0wcemw4" label="sum_of_debt_amount">
         <inputExpression id="LiteralExpression_1r96x8s" typeRef="long">
-          <text></text>
+          <text>sum_of_debt_amount</text>
         </inputExpression>
       </input>
       <input id="InputClause_0mrar3v" label="sum_of_loan_amount">
         <inputExpression id="LiteralExpression_1udrn2d" typeRef="long">
-          <text></text>
+          <text>sum_of_loan_amount</text>
         </inputExpression>
       </input>
-      <output id="Output_1" label="loanOption" typeRef="string" />
+      <output id="Output_1" label="loanOption" name="loanOption" typeRef="string" />
       <rule id="DecisionRule_1uyjhqv">
         <inputEntry id="UnaryTests_0hdc4er">
           <text>&gt;2000</text>
@@ -29,7 +29,7 @@
           <text>&lt;5000</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1wzbr2p">
-          <text>short_term</text>
+          <text>"short_term"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_0k0q143">
@@ -43,7 +43,7 @@
           <text>&lt;3000</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1nqjzv2">
-          <text>long_term</text>
+          <text>"long_term"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_1c7eszn">
@@ -57,7 +57,7 @@
           <text>&lt;8000</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_05zritt">
-          <text>house_loan</text>
+          <text>"house_loan"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_03jvr5w">
@@ -71,7 +71,7 @@
           <text>null</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_0vnltd4">
-          <text>error</text>
+          <text>"error"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_0pb9246">
@@ -85,7 +85,7 @@
           <text></text>
         </inputEntry>
         <outputEntry id="LiteralExpression_133bohu">
-          <text>error</text>
+          <text>"error"</text>
         </outputEntry>
       </rule>
     </decisionTable>
